@@ -1,0 +1,5 @@
+# username and password for scp webservice more: 
+# https://www.netcup-wiki.de/wiki/Server_Control_Panel_(SCP)#Webservice
+username: '<Kundennummer>'
+password: '<WebservicePasswort>'
+# copy this file to passwd.cfg
