@@ -27,3 +27,5 @@ So copy the file `passwd.cfg.example` to `passwd.cfg` and fill it with your cred
 After editing the credentials it should be possible to ping your netcup hosts with ansible:
 
     ansible -i ./netcupdi.py all -m ping
+
+If something gone wrong it could be caused by a missing reverse dns entry.
