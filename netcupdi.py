@@ -18,10 +18,8 @@ client = zeep.Client(wsdl=wsdl)
 
 ## TODO #########
 # - add more error handling for soap responses
-# - export login values for mor security
 # - split and test ip to speicify version
 # - improve ux by accepting hostnames, short names and ids
-# - write documentation
 
 # setup cli params
 parser = argparse.ArgumentParser(
@@ -53,30 +51,34 @@ class Server:
         if self.state == "online":
             result = client.service.stopVServer(username, password, self.srvid)
             if result.success:
-                print("Server " + self.hostname + " wird gestopt")
+                print("Server " + self.hostname + " will be stopped soon.")
             else:
                 print("ERROR:" + result.message)
+                exit(1)
         else:
-            print("Server ist bereits offline")
+            print("The server is allready offline")
+            exit(1)
 
     # starts the server
     def start(self):
         if self.state == "offline":
             result = client.service.startVServer(username, password, self.srvid)
             if result.success:
-                print("Server " + self.hostname + " wird gestartet")
+                print("Server " + self.hostname + " will be started")
             else:
                 print("ERROR:" + result.message)
+                exit(1)
         else:
-            print("Server ist bereits online")
+            print("The server is allready online")
+            exit(1)
 
 
     def printme(self):
         if args.human:
             print("############################################")
-            print("Name: " + self.name)
+            print("Hostname: " + self.name)
             print("ID:   " + self.nameid)
-            print("Status: " + self.state)
+            print("State: " + self.state)
             print("IPs: ")
             print(self.ips)
         else:
@@ -102,7 +104,7 @@ def list_hosts():
             print("############################################")
             print("Hostname: " + srv.hostname)
             print("ID:       " + srv.srvid)
-            print("Status:   " + srv.state)
+            print("State:   " + srv.state)
             print("IPs: ")
             print(srv.ips)
 
@@ -124,6 +126,7 @@ def show_host(srv):
         print('}')
     else:
         print "Server not found!"
+        exit(1)
 
 # run functions
 if args.list:

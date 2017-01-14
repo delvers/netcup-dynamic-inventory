@@ -14,7 +14,7 @@ This script provides a [dynamic inventory](http://docs.ansible.com/ansible/intro
       -c {start,stop}  starts or stops server, requires --host
 
 #### Install
-This script is developt with Python 2.7.12 and based on [zeep](http://docs.python-zeep.org/en/master/).
+This script is developed with Python 2.7.12 and based on [zeep](http://docs.python-zeep.org/en/master/).
 Zeep is fastly installed:
 
     pip install zeep
