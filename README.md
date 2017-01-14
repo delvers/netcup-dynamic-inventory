@@ -23,3 +23,7 @@ It requires also the credentials for the [webservice interface]("https%3A%2F%2Fw
 So copy the file `passwd.cfg.example` to `passwd.cfg` and fill it with your credentials.
 
     cp ./passwd.cfg.example ./passwd.cfg
+
+After editing the credentials it should be possible to ping your netcup hosts with ansible:
+
+    ansible -i ./netcupdi.py all -m ping

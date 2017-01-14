@@ -4,7 +4,7 @@ import socket
 import argparse
 import yaml
 
-# username and password for scp webservice more: 
+# username and password for scp webservice more:
 # https://www.netcup-wiki.de/wiki/Server_Control_Panel_(SCP)#Webservice
 cfg = yaml.load(open("passwd.cfg", "r+"))
 username = cfg.get('username')
@@ -26,9 +26,9 @@ client = zeep.Client(wsdl=wsdl)
 # setup cli params
 parser = argparse.ArgumentParser(
         description='Ansible dynamic inventory script for netcup scp (and also some kind of cli)')
-parser.add_argument('-H','--human', action='store_true', 
+parser.add_argument('-H','--human', action='store_true',
         help='makes the output more readable for human')
-parser.add_argument('-l', '--list', action='store_true', 
+parser.add_argument('-l', '--list', action='store_true',
         help='list servers with id and full hostname')
 parser.add_argument('--host', default='none',
         help='show additional attributes of the given server')
@@ -58,7 +58,7 @@ class Server:
                 print("ERROR:" + result.message)
         else:
             print("Server ist bereits offline")
-    
+
     # starts the server
     def start(self):
         if self.state == "offline":
@@ -91,7 +91,7 @@ servers = {}
 # gather more information about each server
 for srvid in serverIDs:
     server = Server(srvid)
-    servers[server.srvid] = server
+    servers[server.hostname] = server
 
 # implement functions required by ansible
 def list_hosts():
@@ -134,8 +134,7 @@ elif args.host != 'none':
         srv.start()
     elif args.control == 'stop':
         srv.stop()
-    else: 
+    else:
         show_host(srv)
 else:
     parser.parse_args(["--help"])
-
