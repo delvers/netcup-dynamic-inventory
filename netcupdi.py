@@ -6,7 +6,7 @@ import yaml
 
 # username and password for scp webservice more:
 # https://www.netcup-wiki.de/wiki/Server_Control_Panel_(SCP)#Webservice
-cfg = yaml.load(open("passwd.cfg", "r+"))
+cfg = yaml.load(open("passwd.cfg", "r"))
 username = cfg.get('username')
 password = cfg.get('password')
 
@@ -125,7 +125,8 @@ def show_host(srv):
         print('\t"state"   \t: "'+ srv.state    + '",')
         print('}')
     else:
-        print "Server not found!"
+        print "#Server not found!"
+        print "{}"
         exit(1)
 
 # run functions
