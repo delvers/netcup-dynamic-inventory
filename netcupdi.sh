@@ -45,6 +45,7 @@ class Server:
         self.ips      = client.service.getVServerIPs(username, password, srvid)
         self.hostname = socket.gethostbyaddr(self.ips[0])[0]
         self.state    = client.service.getVServerState(username, password, nameid)
+        self.ips[1]   = self.ips[1].replace(':/64', ':1') # bad workaround
 
     # stops the server
     def stop(self):
