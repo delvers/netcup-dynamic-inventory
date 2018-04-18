@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 import zeep
 import socket
 import argparse
@@ -126,8 +126,8 @@ def show_host(srv):
         print('\t"state"   \t: "'+ srv.state    + '",')
         print('}')
     else:
-        print "#Server not found!"
-        print "{}"
+        print("#Server not found!")
+        print("{}")
         exit(1)
 
 # run functions
